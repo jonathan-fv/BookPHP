@@ -72,6 +72,22 @@ class Comment {
         return $result;
     }
 
+    public static function topXBookByNote($take = 3){
+        $select = "SELECT title, ROUND(AVG(rate),2) as average from comment
+                    INNER JOIN book ON comment.book_id = book.id
+                    WHERE rate > 0
+                    GROUP BY book.id
+                    ORDER BY average DESC
+                    LIMIT :take";
+        $stmtselect = MysqlDatabaseConnectionService::get()->prepare($select);
+        
+        $stmtselect->execute([
+            ':take' => $take,
+        ]);
+        $result = $stmtselect->fetch();
+        return $result;
+    }
+
     public static function addRate($content, $user, $book, $rate){
         $addRate = "INSERT INTO comment (content, user_id, book_id, rate)
                 VALUES (?, ?, ?, ?)";
