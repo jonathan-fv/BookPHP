@@ -1,0 +1,15 @@
+{
+    "name": "jonat/book-php",
+    "autoload": {
+        "psr-4": {
+            "Jonat\\BookPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jonathan Fenoud-Viard",
+            "email": "jonathan.fenoud-viard@outlook.fr"
+        }
+    ],
+    "require": {}
+}
